@@ -15,7 +15,7 @@ class _MockProgress extends Mock implements Progress {}
 class _MockPubUpdater extends Mock implements PubUpdater {}
 
 void main() {
-  const latestVersion = '0.0.1';
+  const latestVersion = '0.0.2';
 
   group('update', () {
     late PubUpdater pubUpdater;

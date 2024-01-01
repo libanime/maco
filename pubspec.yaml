@@ -1,6 +1,6 @@
 name: maco
-description: An anime downloading cli based on libanime.
-version: 0.0.1
+description: An beautiful looking anime downloading cli based on libanime.
+version: 0.0.2
 homepage: https://github.com/libanime/maco/
 repository: https://github.com/libanime/maco/
 issue_tracker: https://github.com/libanime/maco/issues
@@ -16,11 +16,11 @@ environment:
   sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
-  args: ^2.4.1
+  args: ^2.4.2
   cli_completion: ^0.3.0
   dio: ^5.4.0
   libanime: ^0.0.8
-  mason_logger: ^0.2.5
+  mason_logger: ^0.2.10
   pub_updater: ^0.3.1
 
 dev_dependencies:

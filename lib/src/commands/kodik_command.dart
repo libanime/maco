@@ -5,7 +5,6 @@ import 'package:libanime/libanime.dart';
 import 'package:libanime/structures/video.dart';
 import 'package:mason_logger/mason_logger.dart';
 
-///
 /// `maco kodik`
 /// A kodik downloader [Command]
 
@@ -54,22 +53,22 @@ class KodikCommand extends Command<int> {
 
   @override
   Future<int> run() async {
-    final url = argResults!['url'].toString().startsWith('//')
-        ? 'https:${argResults!['url']}'
-        : argResults!['url'].toString();
     dynamic token = 'b7cc4293ed475c4ad1fd599d114f4435';
     if (argResults?.wasParsed('url') == false) {
       _logger.err(lightRed.wrap('Url option cannot be null.'));
       return ExitCode.noInput.code;
     }
     if (argResults?.wasParsed('token') == false) {
-      _logger.info(cyan.wrap('Token not set using default.'));
+      _logger.info(cyan.wrap('Token not set, using default.'));
     } else {
       token = argResults!['token'];
     }
+    final url = argResults!['url'].toString().startsWith('//')
+        ? 'https:${argResults!['url']}'
+        : argResults!['url'].toString();
     final kodik = Kodik(token.toString());
     Map<String, Video>? links = {};
-    final progress = _logger.progress('Begging video extracing.');
+    final progress = _logger.progress('Begging video extraction.');
     try {
       links = await kodik.parse(url, true);
     } on Exception {
@@ -85,7 +84,8 @@ class KodikCommand extends Command<int> {
         // ignore: inference_failure_on_function_invocation
         final infoRq = await dio
             // ignore: inference_failure_on_function_invocation
-            .get('https://kodikapi.com/search?token=$token&player_link=$url');
+            .get(
+                'https://kodikapi.com/search?token=$token&player_link=$url&with_material_data=true');
         // ignore: avoid_dynamic_calls
         info = infoRq.data['results'][0];
       } on DioException {
@@ -94,10 +94,12 @@ class KodikCommand extends Command<int> {
         return ExitCode.unavailable.code;
       }
 
+      // TODO(nekokitsu): Add more info via material data.
       // ignore: avoid_dynamic_calls, lines_longer_than_80_chars
       _logger.info(
-          // ignore: avoid_dynamic_calls
-          '\n${styleBold.wrap('Title Original')}: ${info!["title_orig"]}\n${styleBold.wrap('Title RU')}: ${info!["title"]}\n${styleBold.wrap('Release Year')}: ${info!["year"]}\n${styleBold.wrap('Translator Name')}: ${info!["translation"]["title"]}\n${styleBold.wrap('Shikimori')}: https://shikimori.one/animes/${info!["shikimori_id"]}\n',);
+        // ignore: avoid_dynamic_calls
+        '\n${styleBold.wrap('Title Original')}: ${info!["title_orig"]}\n${styleBold.wrap('Title RU')}: ${info!["title"]}\n${styleBold.wrap('Release Year')}: ${info!["year"]}\n${styleBold.wrap('Translator Name')}: ${info!["translation"]["title"]}\n${styleBold.wrap('Shikimori')}: https://shikimori.one/animes/${info!["shikimori_id"]}\n',
+      );
     }
     final quality = _logger.chooseOne(
       'Choose quality:',

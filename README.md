@@ -1,7 +1,11 @@
-## maco
+# maco
 
 ![coverage][coverage_badge]
 [![License: MIT][license_badge]][license_link]
+[![License: pub][pub_badge]][pub_link]
+
+[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=libanime&repo=maco)](https://github.com/libanime/maco/)
+
 
 An anime downloading cli based on [libanime](https://github.com/libanime/libanime).
 
@@ -26,11 +30,11 @@ Also you can use portable version in Releases page.
 ## Usage
 
 ```sh
-# Parse direct mp4 url for kodik player.
-$ maco kodik -u //kodik.info/seria/428055/cf7b8847a36a6904743111e46c2b77d1/720p
+# Parse direct mp4 url for kodik player and download.
+$ maco kodik -u //kodik.info/seria/428055/cf7b8847a36a6904743111e46c2b77d1/720p -d
 
-# Sample command option
-$ maco sample --cyan
+# Parse direct mp4 url for sibnet player.
+$ maco sibnet -u https://video.sibnet.ru/shell.php?videoid=2235917
 
 # Show CLI version
 $ maco --version
@@ -62,6 +66,8 @@ $ open coverage/index.html
 
 ---
 
-[coverage_badge]: coverage_badge.svg
+[coverage_badge]: https://github.com/libanime/maco/raw/stable/coverage_badge.svg
 [license_badge]: https://img.shields.io/badge/license-MIT-blue.svg
 [license_link]: https://opensource.org/licenses/MIT
+[pub_badge]: https://img.shields.io/pub/v/maco.svg
+[pub_link]: https://pub.dev/packages/maco

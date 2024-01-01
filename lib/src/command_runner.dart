@@ -2,6 +2,7 @@ import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:cli_completion/cli_completion.dart';
 import 'package:maco/src/commands/commands.dart';
+import 'package:maco/src/commands/sibnet_command.dart';
 import 'package:maco/src/version.dart';
 import 'package:mason_logger/mason_logger.dart';
 import 'package:pub_updater/pub_updater.dart';
@@ -42,6 +43,7 @@ class MacoCommandRunner extends CompletionCommandRunner<int> {
 
     // Add sub commands
     addCommand(KodikCommand(logger: _logger));
+    addCommand(SibnetCommand(logger: _logger));
     addCommand(UpdateCommand(logger: _logger, pubUpdater: _pubUpdater));
   }
 
