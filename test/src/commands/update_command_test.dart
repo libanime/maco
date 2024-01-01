@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:mason_logger/mason_logger.dart';
-import 'package:mocktail/mocktail.dart';
 import 'package:maco/src/command_runner.dart';
 import 'package:maco/src/commands/commands.dart';
 import 'package:maco/src/version.dart';
+import 'package:mason_logger/mason_logger.dart';
+import 'package:mocktail/mocktail.dart';
 import 'package:pub_updater/pub_updater.dart';
 import 'package:test/test.dart';
 
@@ -15,7 +15,7 @@ class _MockProgress extends Mock implements Progress {}
 class _MockPubUpdater extends Mock implements PubUpdater {}
 
 void main() {
-  const latestVersion = '0.0.0';
+  const latestVersion = '0.0.1';
 
   group('update', () {
     late PubUpdater pubUpdater;

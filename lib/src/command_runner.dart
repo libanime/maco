@@ -1,9 +1,9 @@
 import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 import 'package:cli_completion/cli_completion.dart';
-import 'package:mason_logger/mason_logger.dart';
 import 'package:maco/src/commands/commands.dart';
 import 'package:maco/src/version.dart';
+import 'package:mason_logger/mason_logger.dart';
 import 'package:pub_updater/pub_updater.dart';
 
 final repoLink = link(

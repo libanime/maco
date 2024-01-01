@@ -84,6 +84,7 @@ class KodikCommand extends Command<int> {
       try {
         // ignore: inference_failure_on_function_invocation
         final infoRq = await dio
+            // ignore: inference_failure_on_function_invocation
             .get('https://kodikapi.com/search?token=$token&player_link=$url');
         // ignore: avoid_dynamic_calls
         info = infoRq.data['results'][0];
@@ -95,7 +96,8 @@ class KodikCommand extends Command<int> {
 
       // ignore: avoid_dynamic_calls, lines_longer_than_80_chars
       _logger.info(
-          '\n${styleBold.wrap('Title Original')}: ${info!["title_orig"]}\n${styleBold.wrap('Title RU')}: ${info!["title"]}\n${styleBold.wrap('Release Year')}: ${info!["year"]}\n${styleBold.wrap('Translator Name')}: ${info!["translation"]["title"]}\n${styleBold.wrap('Shikimori')}: https://shikimori.one/animes/${info!["shikimori_id"]}\n');
+          // ignore: avoid_dynamic_calls
+          '\n${styleBold.wrap('Title Original')}: ${info!["title_orig"]}\n${styleBold.wrap('Title RU')}: ${info!["title"]}\n${styleBold.wrap('Release Year')}: ${info!["year"]}\n${styleBold.wrap('Translator Name')}: ${info!["translation"]["title"]}\n${styleBold.wrap('Shikimori')}: https://shikimori.one/animes/${info!["shikimori_id"]}\n',);
     }
     final quality = _logger.chooseOne(
       'Choose quality:',
