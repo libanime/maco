@@ -21,11 +21,13 @@ Or locally via:
 dart pub global activate --source=path <path to this package>
 ```
 
+Also you can use portable version in Releases page.
+
 ## Usage
 
 ```sh
-# Sample command
-$ maco sample
+# Parse direct mp4 url for kodik player.
+$ maco kodik -u //kodik.info/seria/428055/cf7b8847a36a6904743111e46c2b77d1/720p
 
 # Sample command option
 $ maco sample --cyan
