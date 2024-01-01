@@ -3,7 +3,7 @@
 ![coverage][coverage_badge]
 [![License: MIT][license_badge]][license_link]
 
-An anime downloading cli based on [libanime][https://github.com/libanime/libanime].
+An anime downloading cli based on [libanime](https://github.com/libanime/libanime).
 
 ---
 
