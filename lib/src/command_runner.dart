@@ -6,15 +6,13 @@ import 'package:maco/src/commands/commands.dart';
 import 'package:maco/src/version.dart';
 import 'package:pub_updater/pub_updater.dart';
 
-
 final repoLink = link(
-    message: 'libanime',
-    uri: Uri.parse('https://github.com/libanime/libanime'),
+  message: 'libanime',
+  uri: Uri.parse('https://github.com/libanime/libanime'),
 );
 const executableName = 'maco';
 const packageName = 'maco';
 final description = 'An anime downloading cli based on $repoLink.';
-
 
 /// A [CommandRunner] for the CLI.
 ///
