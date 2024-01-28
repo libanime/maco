@@ -19,7 +19,7 @@ dependencies:
   args: ^2.4.2
   cli_completion: ^0.3.0
   dio: ^5.4.0
-  libanime: ^0.0.8
+  libanime: ^0.0.9
   mason_logger: ^0.2.10
   pub_updater: ^0.3.1
 
