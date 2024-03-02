@@ -1,6 +1,6 @@
 name: maco
 description: An beautiful looking anime downloading cli based on libanime.
-version: 0.0.2
+version: 0.0.4
 homepage: https://github.com/libanime/maco/
 repository: https://github.com/libanime/maco/
 issue_tracker: https://github.com/libanime/maco/issues
