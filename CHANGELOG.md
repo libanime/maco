@@ -1,3 +1,11 @@
+## 0.0.4
+
+* Bump libanime version
+
+## 0.0.3
+
+* Bump libanime version
+
 ## 0.0.2
 
 * Sibnet parser!
