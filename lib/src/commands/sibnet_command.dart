@@ -1,7 +1,7 @@
 import 'package:args/command_runner.dart';
 // ignore: depend_on_referenced_packages
 import 'package:dio/dio.dart';
-import 'package:libanime/libanime.dart';
+import 'package:libanime/parsers/anime.dart';
 import 'package:libanime/structures/video.dart';
 import 'package:mason_logger/mason_logger.dart';
 
