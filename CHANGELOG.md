@@ -1,3 +1,6 @@
+## 0.0.5
+
+* Bump libanime version
 ## 0.0.4
 
 * Bump libanime version
