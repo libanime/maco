@@ -1,3 +1,6 @@
+## 0.0.6
+
+* Force quality
 ## 0.0.5
 
 * Bump libanime version

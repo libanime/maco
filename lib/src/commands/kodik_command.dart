@@ -20,6 +20,12 @@ class KodikCommand extends Command<int> {
         help: 'Player Url',
       )
       ..addOption(
+        'quality',
+        abbr: 'q',
+        allowed: ['360', '480', '720']
+        help: 'Video quality',
+      )
+      ..addOption(
         'path',
         abbr: 'p',
         help: 'Path for downloading. (Default ./video.mp4)',
@@ -101,11 +107,17 @@ class KodikCommand extends Command<int> {
         '\n${styleBold.wrap('Title Original')}: ${info!["title_orig"]}\n${styleBold.wrap('Title RU')}: ${info!["title"]}\n${styleBold.wrap('Release Year')}: ${info!["year"]}\n${styleBold.wrap('Translator Name')}: ${info!["translation"]["title"]}\n${styleBold.wrap('Shikimori')}: https://shikimori.one/animes/${info!["shikimori_id"]}\n',
       );
     }
-    final quality = _logger.chooseOne(
+    final quality;
+    if (!argResults?.wasParsed('quality')) {
+      quality = _logger.chooseOne(
       'Choose quality:',
       choices: ['360', '480', '720'],
       defaultValue: '480',
     );
+    } else {
+      quality = argResults!['quality'];
+    }
+    
     final mp4Url = links![quality]?.url;
     _logger.info(mp4Url);
     if (argResults?['download'] == true) {
