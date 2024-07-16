@@ -1,3 +1,6 @@
+## 0.0.7
+
+* Silent mode
 ## 0.0.6
 
 * Force quality

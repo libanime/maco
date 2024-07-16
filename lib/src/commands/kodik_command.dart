@@ -19,10 +19,15 @@ class KodikCommand extends Command<int> {
         abbr: 'u',
         help: 'Player Url',
       )
+      ..addFlag(
+        'silent',
+        abbr: 's',
+        help: 'Silent mode',
+      )
       ..addOption(
         'quality',
         abbr: 'q',
-        allowed: ['360', '480', '720']
+        allowed: ['360', '480', '720'],
         help: 'Video quality',
       )
       ..addOption(
@@ -60,6 +65,7 @@ class KodikCommand extends Command<int> {
   @override
   Future<int> run() async {
     dynamic token = 'b7cc4293ed475c4ad1fd599d114f4435';
+    bool silent = argResults!['silent'];
     if (argResults?.wasParsed('url') == false) {
       _logger.err(lightRed.wrap('Url option cannot be null.'));
       return ExitCode.noInput.code;
@@ -74,17 +80,24 @@ class KodikCommand extends Command<int> {
         : argResults!['url'].toString();
     final kodik = Kodik(token.toString());
     Map<String, Video>? links = {};
-    final progress = _logger.progress('Begging video extraction.');
+    if (!silent) {
+    	final progress = _logger.progress('Begging video extraction.');
+    }
     try {
       links = await kodik.parse(url, true);
     } on Exception {
-      progress.fail('An error occurred');
+      if (!silent) {
+      	progress.fail('An error occurred');
+      }
       _logger.err(lightRed.wrap('Link decode error!'));
       return ExitCode.unavailable.code;
     }
-    progress.complete('Fetching complete!');
+    if (!silent) {
+    	progress.complete('Fetching complete!');
+    }
     // ignore: use_if_null_to_convert_nulls_to_bools
-    if (argResults?.wasParsed('info') == true) {
+    if (!silent) {
+     if (argResults?.wasParsed('info') == true) {
       dynamic info;
       try {
         // ignore: inference_failure_on_function_invocation
@@ -99,23 +112,27 @@ class KodikCommand extends Command<int> {
         _logger.err(lightRed.wrap('Info requesting error'));
         return ExitCode.unavailable.code;
       }
+     
 
+      
       // TODO(nekokitsu): Add more info via material data.
       // ignore: avoid_dynamic_calls, lines_longer_than_80_chars
       _logger.info(
         // ignore: avoid_dynamic_calls
         '\n${styleBold.wrap('Title Original')}: ${info!["title_orig"]}\n${styleBold.wrap('Title RU')}: ${info!["title"]}\n${styleBold.wrap('Release Year')}: ${info!["year"]}\n${styleBold.wrap('Translator Name')}: ${info!["translation"]["title"]}\n${styleBold.wrap('Shikimori')}: https://shikimori.one/animes/${info!["shikimori_id"]}\n',
       );
+      
     }
-    final quality;
-    if (!argResults?.wasParsed('quality')) {
+   }
+    String quality;
+    if (argResults?.wasParsed('quality') == false) {
       quality = _logger.chooseOne(
       'Choose quality:',
       choices: ['360', '480', '720'],
       defaultValue: '480',
     );
     } else {
-      quality = argResults!['quality'];
+      quality = argResults!['quality'].toString();
     }
     
     final mp4Url = links![quality]?.url;
