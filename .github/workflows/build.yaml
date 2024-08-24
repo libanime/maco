@@ -1,0 +1,28 @@
+on:
+  push:
+    branches:
+      - stable
+
+jobs:
+  compile:
+    name: dart compile exe
+    strategy:
+      matrix:
+        include:
+          - runs-on: ubuntu-latest
+            binary-name: maco_linux_amd64
+          - runs-on: macos-latest
+            binary-name: maco_macos_amd64
+          - runs-on: windows-latest
+            binary-name: maco_windows.exe
+    runs-on: ${{ matrix.runs-on }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: dart-lang/setup-dart@v1
+      - run: dart pub get
+      - run: mkdir ${{ matrix.runs-on }}
+      - run: dart compile exe bin/maco.dart -o ${{ matrix.runs-on }}/${{ matrix.binary-name }}
+      - uses: actions/upload-artifact@v2
+        with:
+          name: bin-${{ matrix.runs-on }}
+          path: ${{ matrix.runs-on }}
